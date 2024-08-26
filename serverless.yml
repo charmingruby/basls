@@ -12,8 +12,14 @@ provider:
 
 functions:
   ping:
-    handler: handler.ping
+    handler: src/functions/ping.handler
     events:
       - httpApi:
-          path: /
-          method: get
+          path: /ping
+          method: GET
+  pong:
+    handler: src/functions/pong.handler
+    events:
+      - httpApi:
+          path: /pong/{message}
+          method: GET
