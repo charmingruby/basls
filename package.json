@@ -1,0 +1,11 @@
+{
+  "name": "basls",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/charmingruby/basls.git",
+  "author": "charmingruby <mrrubycanal3105@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "serverless-offline": "^13.7.0"
+  }
+}
