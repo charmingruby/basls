@@ -1,13 +1,30 @@
-# "org" ensures this Service is used with the correct Serverless Framework Access Key.
 org: clouding
-# "service" is the name of this project. This will also be added to your AWS resource names.
+
 service: basls
 
-plugins:
-  - serverless-offline
+frameworkVersion: "4"
 
 package: 
   individually: true
+  patterns: ['package.json'] 
+
+build:
+  esbuild:
+    format: esm
+    minify: true
+    bundle: true
+    external:  
+      - @aws-sdk/client-s3
+    exclude:  
+      - @aws-sdk/*
+    packages: external
+    buildConcurrency: 3
+    sourcemap:
+      type: linked
+      setNodeOptions: true
+    
+plugins:
+  - serverless-offline
 
 provider:
   name: aws
@@ -15,15 +32,15 @@ provider:
   memorySize: 128
 
 functions:
-  ping:
-    handler: src/functions/ping.handler
+  welcome:
+    handler: src/functions/welcome.handler
     events:
       - httpApi:
-          path: /ping
+          path: /welcome/{identifier}
           method: GET
   pong:
     handler: src/functions/pong.handler
     events:
       - httpApi:
-          path: /pong/{message}
+          path: /pong
           method: GET
