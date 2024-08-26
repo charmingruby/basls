@@ -6,6 +6,9 @@ service: basls
 plugins:
   - serverless-offline
 
+package: 
+  individually: true
+
 provider:
   name: aws
   runtime: nodejs20.x
